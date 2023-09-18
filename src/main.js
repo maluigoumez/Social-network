@@ -1,5 +1,8 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { myFunction } from './lib/index.js';
+import { start } from './srtar.js';
+import { home } from './home.js'
 
-myFunction();
+const root = document.getElementById('root');
+root.append(home());
+
