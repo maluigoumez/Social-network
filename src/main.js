@@ -1,47 +1,39 @@
-// Este es el punto de entrada de tu aplicacion
+// file main.js finished
+import home from './home.js';
+import login from './login.js';
+import error from './error.js';
 
-import login from "./login.js"
-import  home  from "./home.js";
-import error from "./error.js";
-
-const root = document.getElementById('root');
 const routes = [
-    { path: '/', component: home},
-    { path: '/login', component: login},
-    { path: '/error', component: error},
+  { path: '/', component: home },
+  { path: '/login', component: login },
+  { path: '/error', component: error },
 ];
 
 const defaultRoute = '/';
+const root = document.getElementById('root');
+// console.log('ok');
+function navigateTo(hash) {
+  console.log(hash);
+  const route = routes.find((routeFound) => routeFound.path === hash);
 
-function navigateTo(hash){
+  if (route && route.component) {
+    window.history.pushState(
+      {},
+      route.path,
+      window.location.origin + route.path,
+    );
 
-    console.log({ hash })
-    const route = routes.find((routeFound)=> routeFound.path === hash);
-
-    if(route && route.component){
-        window.history.pushState(
-            {},
-            route.path,
-            window.location.origin + route.path,
-        );
-        
-        if(root.firstChild){
-            root.removeChild(root.firstChild);
-        }
-        root.appendChild(route.component(navigateTo));
-
-    } else{
-        navigateTo('/error')
-       } 
+    if (root.firstChild) {
+      root.removeChild(root.firstChild);
+    }
+    root.appendChild(route.component(navigateTo));
+  } else {
+    navigateTo('/error');
+  }
 }
 
 window.onpopstate = () => {
-    navigateTo(window.location.pathname)
+  navigateTo(window.location.pathname);
 };
-navigateTo(window.location.pathname || defaultRoute);     
-
-
-
-
-
-
+console.log(window.location);
+navigateTo(window.location.pathname || defaultRoute);
