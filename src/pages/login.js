@@ -7,11 +7,17 @@ function login(navigateTo) {
   const password = document.createElement('input');
   const buttonSing = document.createElement('button');
   const buttonLogin = document.createElement('button');
+  const img = document.createElement('img');
+  const appName = document.createElement('h1');
 
-  inputEmail.placeholder = 'Write E-mail';
+  appName.textContent = '{HOPPER}';
+  title.textContent = 'Login';
+  inputEmail.placeholder = 'Write your email';
   buttonSing.textContent = 'Sign in';
   password.placeholder = 'Password';
   buttonLogin.textContent = 'Log in';
+  img.src = 'router/cubo.jpg';
+  img.alt = 'logo';
 
   form.append(inputEmail, password, buttonSing);
 
@@ -20,9 +26,8 @@ function login(navigateTo) {
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-  title.textContent = 'Login';
-  section.append(title);
-  section.append(title, form, buttonLogin, buttonReturn);
+
+  section.append(img, appName, title, form, buttonLogin, buttonReturn);
   return section;
 }
 

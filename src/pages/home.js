@@ -3,19 +3,22 @@ function home(navigateTo) {
   const title = document.createElement('h2');
   const buttonLogin = document.createElement('button');
   const textWelcome = document.createElement('p');
+  const appName = document.createElement('h1');
+  const img = document.createElement('img');
 
-  title.textContent = 'Welcome';
-  section.append(title, buttonLogin);
+  appName.textContent = '{HOPPER}';
+  title.textContent = 'Welcome to';
+  img.src = 'router/cubo.jpg';
+  img.alt = 'logo';
 
   textWelcome.textContent = 'A space created especially for programming lovers. Join and immerse yourself in the world of coding!';
   buttonLogin.innerHTML = 'Login';
-  title.textContent = 'Welcome';
 
   buttonLogin.addEventListener('click', () => {
     navigateTo('/login');
   });
 
-  section.append(title, textWelcome, buttonLogin);
+  section.append(title, img, appName, textWelcome, buttonLogin);
   return section;
 }
 
