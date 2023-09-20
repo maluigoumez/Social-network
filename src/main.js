@@ -1,19 +1,37 @@
-import { addRoutes, onNavigate } from './router/index.js';
-import { home } from './pages/home.js';
-import { register } from './pages/register.js';
-import { wall } from './pages/wall.js';
+import home from './pages/home.js';
+import login from './pages/login.js';
+import error from './pages/error.js';
 
-addRoutes({
-  '/': home,
-  '/register': register,
-  '/wall': wall,
-});
+const routes = [
+  { path: '/', component: home },
+  { path: '/login', component: login },
+  { path: '/error', component: error },
+];
 
-// Lógica de la aplicacion
-window.onload = () => {
-  onNavigate(window.location.pathname);
-};
+const defaultRoute = '/';
+const root = document.getElementById('root');
+
+function navigateTo(hash) {
+  const route = routes.find((routeFound) => routeFound.path === hash);
+
+  if (route && route.component) {
+    window.history.pushState(
+      {},
+      route.path,
+      window.location.origin + route.path,
+    );
+
+    if (root.firstChild) {
+      root.removeChild(root.firstChild);
+    }
+    root.appendChild(route.component(navigateTo));
+  } else {
+    navigateTo('/error');
+  }
+}
 
 window.onpopstate = () => {
-  onNavigate(window.location.pathname);
+  navigateTo(window.location.pathname);
 };
+
+navigateTo(window.location.pathname || defaultRoute);
