@@ -1,15 +1,17 @@
-import home from './pages/home.js';
-import login from './pages/login.js';
-import error from './pages/error.js';
+import home from "./pages/home.js";
+import signin from "./pages/signin.js";
+import error from "./pages/error.js";
+import signup from "./pages/signup.js";
 
 const routes = [
-  { path: '/', component: home },
-  { path: '/login', component: login },
-  { path: '/error', component: error },
+  { path: "/", component: home },
+  { path: "/signin", component: signin },
+  { path: "/error", component: error },
+  { path: "/signup", component: signup },
 ];
 
-const defaultRoute = '/';
-const root = document.getElementById('root');
+const defaultRoute = "/";
+const root = document.getElementById("root");
 
 function navigateTo(hash) {
   const route = routes.find((routeFound) => routeFound.path === hash);
@@ -18,7 +20,7 @@ function navigateTo(hash) {
     window.history.pushState(
       {},
       route.path,
-      window.location.origin + route.path,
+      window.location.origin + route.path
     );
 
     if (root.firstChild) {
@@ -26,7 +28,7 @@ function navigateTo(hash) {
     }
     root.appendChild(route.component(navigateTo));
   } else {
-    navigateTo('/error');
+    navigateTo("/error");
   }
 }
 
