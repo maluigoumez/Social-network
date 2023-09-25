@@ -20,6 +20,8 @@ function login(navigateTo) {
   img.alt = 'logo';
 
   form.append(inputEmail, password, buttonSing);
+  buttonSing.type = 'button';
+  buttonLogin.type = 'button';
 
   buttonReturn.textContent = 'Return to home';
 
