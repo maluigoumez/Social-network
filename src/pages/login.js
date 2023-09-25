@@ -1,4 +1,6 @@
-function login(navigateTo) {
+import { login } from '../lib/authService';
+
+function Login(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const buttonReturn = document.createElement('button');
@@ -20,8 +22,20 @@ function login(navigateTo) {
   img.alt = 'logo';
 
   form.append(inputEmail, password, buttonSing);
+  buttonSing.type = 'button';
+  buttonLogin.type = 'button';
 
   buttonReturn.textContent = 'Return to home';
+
+  buttonLogin.addEventListener('click', () => {
+    login(inputEmail.value, password.value)
+      .then((res) => {
+        console.log({ res });
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  });
 
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
@@ -30,5 +44,4 @@ function login(navigateTo) {
   section.append(img, appName, title, form, buttonLogin, buttonReturn);
   return section;
 }
-
-export default login;
+export default Login;
