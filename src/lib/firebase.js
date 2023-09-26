@@ -1,5 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+<<<<<<< HEAD
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+=======
+>>>>>>> 86da18da5c5f90f3de10397fb1ee91a9ea811dc3
 import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -20,6 +25,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+<<<<<<< HEAD
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+
+=======
 export const auth = getFirestore(app);
 
 import { collection, addDoc } from "firebase/firestore"; 
@@ -34,3 +44,4 @@ try {
 } catch (e) {
   console.error("Error adding document: ", e);
 }
+>>>>>>> 86da18da5c5f90f3de10397fb1ee91a9ea811dc3
