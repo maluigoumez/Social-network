@@ -13,9 +13,9 @@ function signup(navigateTo) {
   appName.textContent = "{HOPPER}";
   title.textContent = "Sign Up";
   inputEmail.placeholder = "Write your email";
-  buttonSignUp3.textContent = "Sign up";
+  buttonSignUp2.textContent = "Sign up";
   password.placeholder = "Password";
-  buttonSignIn2.textContent = "Already have an account? Log in!";
+  buttonSignUp2.textContent = "Already have an account? Sign in!";
   img.src = "router/cubo.jpg";
   img.alt = "logo";
 
@@ -29,6 +29,14 @@ function signup(navigateTo) {
 
   buttonReturn.addEventListener("click", () => {
     navigateTo("/");
+  });
+
+  // Add an event listener for the "Sign up" button
+  buttonSignUp2.addEventListener("click", () => {
+    // Handle the sign-up process here
+    // You can add your sign-up logic or navigate to a different route
+    // For example, navigateTo("/signin") to go to the sign-in page after signing up
+    navigateTo("/signin");
   });
 
   section.append(img, appName, title, form, buttonSignUp2, buttonReturn);
