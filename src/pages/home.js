@@ -17,14 +17,14 @@ function home(navigateTo) {
   buttonSingup.innerHTML = 'Sign Up';
 
   buttonSingup.addEventListener('click', () => {
-    navigateTo('/login');
-  });
-
-  buttonLogin.addEventListener('click', () => {
     navigateTo('/check');
   });
 
-  section.append(title, img, appName, textWelcome, buttonLogin);
+  buttonLogin.addEventListener('click', () => {
+    navigateTo('/login');
+  });
+
+  section.append(title, img, appName, textWelcome, buttonLogin, buttonSingup);
   return section;
 }
 
