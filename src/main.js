@@ -1,13 +1,15 @@
 import home from './pages/home.js';
 import login from './pages/login.js';
 import error from './pages/error.js';
-import feed from './pages/feed.js'
+import feed from './pages/feed.js';
+import check from './pages/check.js';
 
 const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
   { path: '/error', component: error },
   { path: '/feed', component: feed },
+  { path: '/check', component: check },
 ];
 
 const defaultRoute = '/';
