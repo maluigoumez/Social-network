@@ -1,26 +1,47 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+<<<<<<< HEAD
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+=======
+>>>>>>> 86da18da5c5f90f3de10397fb1ee91a9ea811dc3
 import { getAnalytics } from 'firebase/analytics';
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyA6wNwKkAk6Keq12M_Hj4IqdWP--hGiDjA',
-  authDomain: 'social-e997e.firebaseapp.com',
-  projectId: 'social-e997e',
-  storageBucket: 'social-e997e.appspot.com',
-  messagingSenderId: '1070528329980',
-  appId: '1:1070528329980:web:cd0200f376d4cf1010ff79',
-  measurementId: 'G-Y5RCZWEDKW',
+  apiKey: 'AIzaSyBvoBLRF2CGwuVer7B-jtQe_mdBHDOsOtw',
+  authDomain: 'red-social-5d8c1.firebaseapp.com',
+  projectId: 'red-social-5d8c1',
+  storageBucket: 'red-social-5d8c1.appspot.com',
+  messagingSenderId: '328254001594',
+  appId: '1:328254001594:web:17d9cc356ce8fcbd0d0d83',
+  measurementId: 'G-99W3G3QCJ0',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+<<<<<<< HEAD
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
+=======
+export const auth = getFirestore(app);
+
+import { collection, addDoc } from "firebase/firestore"; 
+
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+>>>>>>> 86da18da5c5f90f3de10397fb1ee91a9ea811dc3

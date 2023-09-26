@@ -15,7 +15,7 @@ function Login(navigateTo) {
   appName.textContent = '{HOPPER}';
   title.textContent = 'Login';
   inputEmail.placeholder = 'Write your email';
-  buttonSing.textContent = 'Sign in';
+  buttonSing.textContent = '';
   password.placeholder = 'Password';
   buttonLogin.textContent = 'Log in';
   img.src = 'router/cubo.jpg';
