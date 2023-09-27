@@ -1,33 +1,37 @@
-import { login } from '../lib/authService';
+import { login } from "../lib/authService";
 
 function Login(navigateTo) {
-  const section = document.createElement('section');
-  const title = document.createElement('h2');
-  const buttonReturn = document.createElement('button');
-  const form = document.createElement('form');
-  const inputEmail = document.createElement('input');
-  const password = document.createElement('input');
-  const buttonSing = document.createElement('button');
-  const buttonLogin = document.createElement('button');
-  const img = document.createElement('img');
-  const appName = document.createElement('h1');
+  const section = document.createElement("section");
+  const title = document.createElement("h2");
+  const buttonReturn = document.createElement("button");
+  const form = document.createElement("form");
+  const inputEmail = document.createElement("input");
+  const password = document.createElement("input");
 
-  appName.textContent = '{HOPPER}';
-  title.textContent = 'Login';
-  inputEmail.placeholder = 'Write your email';
-  buttonSing.textContent = '';
-  password.placeholder = 'Password';
-  buttonLogin.textContent = 'Log in';
-  img.src = 'router/cubo.jpg';
-  img.alt = 'logo';
+  const buttonLogin = document.createElement("button");
+  const img = document.createElement("img");
+  const appName = document.createElement("h1");
 
-  form.append(inputEmail, password, buttonSing);
-  buttonSing.type = 'button';
-  buttonLogin.type = 'button';
+  appName.textContent = "{HOPPER}";
+  title.textContent = "Login";
+  inputEmail.placeholder = "Write your email";
+  inputEmail.type = "email";
+  inputEmail.autocomplete = "current-email";
 
-  buttonReturn.textContent = 'Return to home';
+  password.placeholder = "Password";
+  password.type = "password";
+  password.autocomplete = "current-password";
 
-  buttonLogin.addEventListener('click', () => {
+  buttonLogin.textContent = "Log in";
+  buttonLogin.type = "button";
+  img.src = "router/cubo.jpg";
+  img.alt = "logo";
+
+  form.append(inputEmail, password, buttonLogin);
+
+  buttonReturn.textContent = "Return to home";
+
+  buttonLogin.addEventListener("click", () => {
     login(inputEmail.value, password.value)
       .then((res) => {
         console.log({ res });
@@ -37,11 +41,11 @@ function Login(navigateTo) {
       });
   });
 
-  buttonReturn.addEventListener('click', () => {
-    navigateTo('/');
+  buttonReturn.addEventListener("click", () => {
+    navigateTo("/");
   });
 
-  section.append(img, appName, title, form, buttonLogin, buttonReturn);
+  section.append(img, appName, title, form, buttonReturn);
   return section;
 }
 export default Login;
