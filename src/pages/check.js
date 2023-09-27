@@ -38,6 +38,7 @@ function Check(navigateTo) {
   buttonSign.type = "button";
 
   buttonReturn.textContent = "Return to home";
+  buttonReturn.className = "opposite";
 
   buttonSign.addEventListener("click", () => {
     if (inputEmail.value === "" || password.value.length < 6) {

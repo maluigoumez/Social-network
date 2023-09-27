@@ -14,15 +14,11 @@ function home(navigateTo) {
 
   textWelcome.textContent =
     "A space created especially for programming lovers. Join and immerse yourself in the world of coding!";
-  buttonLogin.innerHTML = "Login";
+  buttonLogin.innerHTML = "Sign In";
+  buttonLogin.className = "original";
 
   buttonSignup.innerHTML = "Sign Up";
-  buttonSignup.innerHTML = "Sign Up";
-
-  buttonSignup.addEventListener("click", () => {
-    navigateTo("/check");
-  });
-
+  buttonSignup.className = "opposite";
   buttonLogin.addEventListener("click", () => {
     navigateTo("/login");
   });

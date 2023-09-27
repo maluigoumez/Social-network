@@ -23,6 +23,7 @@ function Login(navigateTo) {
   password.autocomplete = "current-password";
 
   buttonLogin.textContent = "Log in";
+  buttonLogin.className = "original";
   buttonLogin.type = "button";
   img.src = "router/cubo.jpg";
   img.alt = "logo";
@@ -30,6 +31,7 @@ function Login(navigateTo) {
   form.append(inputEmail, password, buttonLogin);
 
   buttonReturn.textContent = "Return to home";
+  buttonReturn.className = "opposite";
 
   buttonLogin.addEventListener("click", () => {
     login(inputEmail.value, password.value)
