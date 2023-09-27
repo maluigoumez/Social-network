@@ -14,8 +14,6 @@ function home(navigateTo) {
 
   textWelcome.textContent = 'A space created especially for programming lovers. Join and immerse yourself in the world of coding!';
   buttonLogin.innerHTML = 'Login';
-
-  buttonSignup.innerHTML = 'Sign Up';
   buttonSignup.innerHTML = 'Sign Up';
 
   buttonSignup.addEventListener('click', () => {
@@ -26,10 +24,7 @@ function home(navigateTo) {
     navigateTo('/login');
   });
 
-  buttonSignup.addEventListener('click', () => {
-    navigateTo('/check');
-  });
-
   section.append(title, img, appName, textWelcome, buttonLogin, buttonSignup);
+  return section;
 }
 export default home;

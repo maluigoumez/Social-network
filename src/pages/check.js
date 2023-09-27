@@ -16,6 +16,7 @@ function Check(navigateTo) {
   inputEmail.placeholder = 'Write your email';
   buttonSign.textContent = 'Sign Up';
   password.placeholder = 'Password';
+  password.type = "password";
   img.src = 'router/cubo.jpg';
   img.alt = 'logo';
 
