@@ -29,7 +29,7 @@ function Check(navigateTo) {
       alert('Verifica tus datos');
     } else {
       signup(inputEmail.value, password.value)
-        .then((res) => {
+        .then(() => {
         // console.log({ res });
           navigateTo('/feed');
         })

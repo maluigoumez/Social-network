@@ -2,8 +2,7 @@ function home(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const buttonLogin = document.createElement('button');
-
-  const buttonSingup = document.createElement('button');
+  const buttonSignup = document.createElement('button');
   const textWelcome = document.createElement('p');
   const appName = document.createElement('h1');
   const img = document.createElement('img');
@@ -16,9 +15,10 @@ function home(navigateTo) {
   textWelcome.textContent = 'A space created especially for programming lovers. Join and immerse yourself in the world of coding!';
   buttonLogin.innerHTML = 'Login';
 
-  buttonSingup.innerHTML = 'Sign Up';
+  buttonSignup.innerHTML = 'Sign Up';
+  buttonSignup.innerHTML = 'Sign Up';
 
-  buttonSingup.addEventListener('click', () => {
+  buttonSignup.addEventListener('click', () => {
     navigateTo('/check');
   });
 
@@ -26,17 +26,10 @@ function home(navigateTo) {
     navigateTo('/login');
   });
 
-
   buttonSignup.addEventListener('click', () => {
     navigateTo('/check');
   });
 
- 
+  section.append(title, img, appName, textWelcome, buttonLogin, buttonSignup);
 }
-
-  section.append(title, img, appName, textWelcome, buttonLogin, buttonSingup);
-  return section;
-}
-
 export default home;
-
