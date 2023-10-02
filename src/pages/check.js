@@ -1,10 +1,12 @@
 import { signup } from '../lib/authService';
+import { showMessage } from './showMessage';
 
 function Check(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const buttonReturn = document.createElement('button');
   const form = document.createElement('form');
+  const inputUserName = document.createElement('input');
   const inputEmail = document.createElement('input');
   const password = document.createElement('input');
   const buttonSign = document.createElement('button');
@@ -16,23 +18,53 @@ function Check(navigateTo) {
   inputEmail.placeholder = 'Write your email';
   buttonSign.textContent = 'Sign Up';
   password.placeholder = 'Password';
-  password.type = "password";
+  password.type = 'password';
   img.src = 'router/cubo.jpg';
   img.alt = 'logo';
 
-  form.append(inputEmail, password, buttonSign);
+  inputUserName.placeholder = 'Choose your username';
+  inputUserName.type = 'text';
+  inputUserName.autocomplete = 'username';
+  inputUserName.name = 'username';
+  inputUserName.name = 'required';
+
+  inputEmail.placeholder = 'Write your email';
+  inputEmail.type = 'email';
+  inputEmail.name = 'email';
+  inputEmail.autocomplete = 'current-email';
+
+  buttonSign.textContent = 'Create account';
+  password.placeholder = 'Password';
+  password.type = 'password';
+  password.autocomplete = 'current-password';
+
+  img.src = 'router/cubo.jpg';
+  img.alt = 'logo';
+
+  form.append(inputUserName, inputEmail, password, buttonSign);
   buttonSign.type = 'button';
 
   buttonReturn.textContent = 'Return to home';
 
+  function emailVal() {
+    const expReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailCorrect = expReg.test(inputEmail);
+    if (emailCorrect === false) {
+      console.log(emailCorrect);
+      showMessage('Check your email', false);
+    }
+  }
+
   buttonSign.addEventListener('click', () => {
-    if (inputEmail.value === '' || password.value.length < 6) { // . trim()
-      alert('Verifica tus datos');
+    emailVal(inputEmail.value);
+    if (inputEmail.value === '' || password.value.length < 6 || password.value.trim() === '') {
+      showMessage('Check your data', false);
     } else {
       signup(inputEmail.value, password.value)
+
         .then(() => {
-        // console.log({ res });
           navigateTo('/feed');
+          showMessage(`Welcome ${inputUserName.value}`, 'success');
         })
         .catch((err) => {
           console.log({ err });

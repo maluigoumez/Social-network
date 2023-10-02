@@ -28,6 +28,7 @@ function navigateTo(hash) {
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }
+
     root.appendChild(route.component(navigateTo));
   } else {
     navigateTo('/error');
