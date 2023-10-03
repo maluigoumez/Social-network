@@ -46,7 +46,8 @@ function Check(navigateTo) {
   form.append(inputUserName, inputEmail, password, buttonSign);
   buttonSign.type = 'button';
 
-  buttonReturn.textContent = 'Return to home';
+  buttonReturn.textContent = "Return to home";
+  buttonReturn.className = "opposite";
 
   function emailVal(stringEmail) {
     const expReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

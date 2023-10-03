@@ -1,27 +1,42 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-function callGoogle() {
+export function callGoogle() {
+  // Initialize Firebase authentication and GoogleAuthProvider
   const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+
+  // Trigger Google sign-in popup
   signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
+      // Handle successful login here
+
+      // Access user information from the result object
       const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
+      const displayName = user.displayName;
+      const email = user.email;
+      const uid = user.uid;
+
+      // Log successful login details to the console
+      console.log(`Successful login for user: ${displayName} (${email})`);
+
+      // Redirect to the feed.js file upon successful login
+      window.location.href = "./pages/feed.js"; // You may need to adjust the path
+    })
+
+    .catch((error) => {
+      // Handle login errors here
+
+      // Extract error information
       const errorCode = error.code;
       const errorMessage = error.message;
       // The email of the user's account used.
       const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-  return {
 
-  };
+      // Log the error to the console
+      console.error("Google login error:", error);
+    });
+  // Return an empty object (not typically necessary)
+  return {};
 }

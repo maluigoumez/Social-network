@@ -1,65 +1,135 @@
-
-
-#root{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-items: center;
-
+#root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-items: center;
 }
 
-h2{
-   font-family: 'Courier New', Courier, monospace;
-   
+h2 {
+  font-family: "Courier New", Courier, monospace;
 }
 
-h1{
-    font-family: 'Courier New', Courier, monospace;
+h1 {
+  font-family: "Courier New", Courier, monospace;
 }
 
-button{
-    background-color: black;
-    color: white;
-    margin-top: 10px;
-    font-size: large;  
-    border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    
+button {
+  background-color: black;
+  color: white;
+  margin-top: 10px;
+  font-size: medium;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+  font-family: "Courier New", Courier, monospace;
 }
 button:hover {
-    background-color: darkgrey;
-    transition: .2s;
-    color: black;
+  background-color: darkgrey;
+  transition: 0.2s;
+  color: black;
 }
 
-p{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: medium; 
-    width: 250px;
-    text-align: justify;
+button.original {
+  background-color: black;
+  color: white;
+  margin-top: 10px;
+  font-size: medium;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+  font-family: "Courier New", Courier, monospace;
 }
 
-form{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 35px;
-}
-input{
-    margin: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    box-shadow: -12px 8px darkgrey;
-    margin-bottom: 10px;
+button.original:hover {
+  background-color: darkgrey;
+  transition: 0.2s;
+  color: black;
 }
 
+button.opposite {
+  background-color: darkgrey;
+  color: black;
+  margin-top: 10px;
+  font-size: medium;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+button.opposite:hover {
+  background-color: black;
+  transition: 0.2s;
+  color: white;
+}
+
+button.google {
+  width: flex;
+  height: 40dp;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin-top: 15px;
+  position: relative;
+  font-weight: bold;
+  cursor: pointer;
+  background: #d6dbdf;
+}
+
+button.google img {
+  padding: 8dp;
+  width: 200px;
+  height: 40px;
+}
+
+button.google:hover {
+  background: #38468c;
+  color: #ffffff;
+  border: 1px solid #38468c;
+  cursor: pointer;
+}
+
+p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
+  width: 250px;
+  text-align: justify;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 35px;
+}
+input {
+  margin: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: -12px 8px darkgrey;
+  margin-bottom: 10px;
+}
+
+section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 200px;
+}
 .seccionInicio{
     display: flex;
     flex-direction: column;
@@ -131,3 +201,4 @@ input{
     
 
 }
+
