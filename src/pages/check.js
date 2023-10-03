@@ -1,4 +1,4 @@
-import { signup } from '../lib/authService';
+import { signup, updateUserProfile } from '../lib/authService';
 import { showMessage } from './showMessage';
 
 function Check(navigateTo) {
@@ -40,15 +40,17 @@ function Check(navigateTo) {
 
   img.src = 'router/cubo.jpg';
   img.alt = 'logo';
+  img.className = 'logoInicio';
+  section.className = 'seccionInicio';
 
   form.append(inputUserName, inputEmail, password, buttonSign);
   buttonSign.type = 'button';
 
   buttonReturn.textContent = 'Return to home';
 
-  function emailVal() {
+  function emailVal(stringEmail) {
     const expReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const emailCorrect = expReg.test(inputEmail);
+    const emailCorrect = expReg.test(stringEmail);
     if (emailCorrect === false) {
       console.log(emailCorrect);
       showMessage('Check your email', false);
@@ -62,9 +64,13 @@ function Check(navigateTo) {
     } else {
       signup(inputEmail.value, password.value)
 
-        .then(() => {
-          navigateTo('/feed');
-          showMessage(`Welcome ${inputUserName.value}`, 'success');
+        .then((res) => {
+          updateUserProfile(inputUserName.value)
+            .then(() => {
+              navigateTo('/feed');
+              showMessage(`Welcome ${inputUserName.value}`, 'success');
+            });
+          console.log(res);
         })
         .catch((err) => {
           console.log({ err });

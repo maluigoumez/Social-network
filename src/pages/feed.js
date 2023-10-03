@@ -1,26 +1,55 @@
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDocs, collection } from 'firebase/firestore';
+import { db, auth } from '../lib/firebase';
+import { setupPost } from './post';
+
 function feed(navigateTo) {
-  const barTop = document.createElement('div');
   const section = document.createElement('section');
-  const title = document.createElement('h2');
-  const buttonReturn = document.createElement('button');
+  const title = document.createElement('h3');
+  const buttonLogout = document.createElement('button');
   const img = document.createElement('img');
   const appName = document.createElement('h1');
   const textPost = document.createElement('textarea');
+  const navFeed = document.getElementById('navFeed');
+  const botonPost = document.createElement('button');
 
-  barTop.classList.add('barTop');
   appName.textContent = '{HOPPER}';
-  title.textContent = 'Login';
+  title.textContent = '"You only fail when you stop trying"';
   img.src = 'router/cubo.jpg';
   img.alt = 'logo';
   textPost.placeholder = 'what are you thinking?';
+  buttonLogout.textContent = 'Logout';
+  textPost.className = 'textoPost';
+  botonPost.textContent = 'Post';
+  botonPost.className = 'botonPost';
 
-  buttonReturn.textContent = 'Return to home';
+  img.className = 'logoFeed';
+  navFeed.className = 'navegador';
+  section.classList = 'seccionFeed';
+  buttonLogout.className = 'botonLogout';
 
-  buttonReturn.addEventListener('click', () => {
-    navigateTo('/');
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const querySnapshot = await getDocs(collection(db, 'post'));
+      setupPost(querySnapshot.docs);
+    }
   });
 
-  section.append(img, textPost, title, buttonReturn);
+  buttonLogout.addEventListener('click', async () => {
+    await signOut(auth);
+    navigateTo('/');
+    console.log('user sigout');
+  });
+
+  botonPost.addEventListener('click', async () => {
+    await db.collection("post").add({
+      
+    })
+  })
+  section.append(title, textPost, botonPost);
+  navFeed.appendChild(img);
+  navFeed.appendChild(buttonLogout);
+
   return section;
 }
 

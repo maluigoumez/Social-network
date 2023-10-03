@@ -12,6 +12,7 @@ function Login(navigateTo) {
   const buttonLogin = document.createElement('button');
   const img = document.createElement('img');
   const appName = document.createElement('h1');
+  
 
   appName.textContent = '{HOPPER}';
   title.textContent = 'Login';
@@ -27,6 +28,8 @@ function Login(navigateTo) {
   buttonLogin.type = 'button';
   img.src = 'router/cubo.jpg';
   img.alt = 'logo';
+  img.className = 'logoInicio';
+  section.className = 'seccionInicio';
 
   form.append(inputEmail, password, buttonLogin);
 
@@ -40,7 +43,7 @@ function Login(navigateTo) {
         showMessage('Welcome', 'success');
       })
       .catch(() => {
-        showMessage('Algo sucedio mal', 'error');
+        showMessage('Usuario no existente', 'error');
       });
   });
 
