@@ -1,7 +1,8 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-function callGoogle() {
+export function callGoogle() {
   const auth = getAuth();
+  const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -11,7 +12,8 @@ function callGoogle() {
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -21,7 +23,5 @@ function callGoogle() {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
-  return {
-
-  };
+  return {};
 }
