@@ -47,6 +47,7 @@ function home(navigateTo) {
   });
   buttonSignup.addEventListener("click", () => {
     navigateTo("/check");
+
   });
 
   // Append all elements to the section
