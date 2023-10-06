@@ -1,4 +1,4 @@
-const postList = document.querySelector('.posts');
+// const postList = document.querySelector('.posts');
 
 export const setupPost = (data) => {
   if (data.length) {
@@ -13,8 +13,10 @@ export const setupPost = (data) => {
         `;
       html += divPost;
     });
-    postList.innerHTML = html;
+    // postList.innerHTML = html;
+    return html
   } else {
-    postList.innerHTML = '<h4 class="alertPost"> login to see posts</h4>';
+    return '<h4 class="alertPost"> login to see posts</h4>'
+    // postList.innerHTML = '<h4 class="alertPost"> login to see posts</h4>';
   }
 };

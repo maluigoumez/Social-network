@@ -1,6 +1,6 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDocs, collection } from 'firebase/firestore';
-import { db, auth } from '../lib/firebase';
+import { db, auth, saveTask } from '../lib/firebase';
 import { setupPost } from './post';
 
 function feed(navigateTo) {
@@ -12,6 +12,8 @@ function feed(navigateTo) {
   const textPost = document.createElement('textarea');
   const navFeed = document.getElementById('navFeed');
   const botonPost = document.createElement('button');
+  const sectionPost = document.createElement('section');
+  sectionPost.classList.add('posts');
 
   appName.textContent = '{HOPPER}';
   title.textContent = '"You only fail when you stop trying"';
@@ -28,10 +30,15 @@ function feed(navigateTo) {
   section.classList = 'seccionFeed';
   buttonLogout.className = 'botonLogout';
 
+  async function drawPost() {
+    const querySnapshot = await getDocs(collection(db, 'post'));
+    const htmlPost = setupPost(querySnapshot.docs);
+    sectionPost.innerHTML = htmlPost
+  }
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const querySnapshot = await getDocs(collection(db, 'post'));
-      setupPost(querySnapshot.docs);
+      drawPost();
     }
   });
 
@@ -41,14 +48,19 @@ function feed(navigateTo) {
     console.log('user sigout');
   });
 
-  botonPost.addEventListener('click', async () => {
-    await db.collection("post").add({
-      
-    })
-  })
-  section.append(title, textPost, botonPost);
+  botonPost.addEventListener('click', (e) => {
+    e.preventDefault();
+    const textoPostear = document.querySelector('textarea');
+    saveTask('aria', textoPostear.value)
+      .then(() => {
+        drawPost();
+      });
+  });
+
+  section.append(navFeed, title, textPost, botonPost);
   navFeed.appendChild(img);
   navFeed.appendChild(buttonLogout);
+  section.appendChild(sectionPost)
 
   return section;
 }

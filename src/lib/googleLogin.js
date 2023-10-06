@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 export function callGoogle() {
   // Initialize Firebase authentication and GoogleAuthProvider
@@ -20,7 +20,7 @@ export function callGoogle() {
       console.log(`Successful login for user: ${displayName} (${email})`);
 
       // Redirect to the feed.js file upon successful login
-      window.location.href = "./pages/feed.js"; // You may need to adjust the path
+      feed(); // You may need to adjust the path
     })
 
     .catch((error) => {
@@ -35,7 +35,7 @@ export function callGoogle() {
       const credential = GoogleAuthProvider.credentialFromError(error);
 
       // Log the error to the console
-      console.error("Google login error:", error);
+      console.error('Google login error:', error);
     });
   // Return an empty object (not typically necessary)
   return {};

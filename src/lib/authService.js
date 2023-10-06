@@ -6,3 +6,4 @@ export const login = (email, password) => signInWithEmailAndPassword(auth, email
 export const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 export const updateUserProfile = (name) => updateProfile(auth.currentUser, { displayName: name });
+

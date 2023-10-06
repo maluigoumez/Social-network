@@ -12,7 +12,6 @@ function Login(navigateTo) {
   const buttonLogin = document.createElement('button');
   const img = document.createElement('img');
   const appName = document.createElement('h1');
-  
 
   appName.textContent = '{HOPPER}';
   title.textContent = 'Login';
