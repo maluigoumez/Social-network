@@ -17,10 +17,11 @@ export function callGoogle() {
       const uid = user.uid;
 
       // Log successful login details to the console
-      console.log(`Successful login for user: ${displayName} (${email})`);
 
       // Redirect to the feed.js file upon successful login
-      feed(); // You may need to adjust the path
+      window.location.assign('/feed');
+      // You may need to adjust the path
+      console.log(`Successful login for user: ${displayName} (${email})`);
     })
 
     .catch((error) => {

@@ -22,7 +22,4 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const auth = getAuth(app);
 
-export const saveTask = (title, content) => {
-  return addDoc(collection(db, 'post'), { title, content });
-  console.log(title, content);
-};
+export const saveTask = (title, content) => addDoc(collection(db, 'post'), { title, content });
