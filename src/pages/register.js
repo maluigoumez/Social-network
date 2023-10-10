@@ -1,7 +1,7 @@
 import { signup, updateUserProfile } from '../lib/authService';
 import { showMessage } from './showMessage';
 
-function Check(navigateTo) {
+function Register(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const buttonReturn = document.createElement('button');
@@ -14,7 +14,7 @@ function Check(navigateTo) {
   const appName = document.createElement('h1');
 
   appName.textContent = '{HOPPER}';
-  title.textContent = 'Check';
+  title.textContent = 'Register';
   inputEmail.placeholder = 'Write your email';
   buttonSign.textContent = 'Sign Up';
   password.placeholder = 'Password';
@@ -86,4 +86,4 @@ function Check(navigateTo) {
   section.append(img, appName, title, form, buttonSign, buttonReturn);
   return section;
 }
-export default Check;
+export default Register;

@@ -1,8 +1,9 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { getDocs, collection } from 'firebase/firestore';
+import {
+  getDocs, collection, orderBy, onSnapshot,
+} from 'firebase/firestore';
 import { db, auth, saveTask } from '../lib/firebase';
 import { setupPost } from './post';
-import { showMessage } from './showMessage';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -30,7 +31,6 @@ function feed(navigateTo) {
   navFeed.className = 'navegador';
   section.classList = 'seccionFeed';
   buttonLogout.className = 'botonLogout';
-  const displayName = user.displayName;
 
   async function drawPost() {
     const querySnapshot = await getDocs(collection(db, 'post'));
@@ -44,19 +44,23 @@ function feed(navigateTo) {
     }
   });
 
+  botonPost.addEventListener('click', () => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const textoPostear = document.querySelector('textarea');
+        const displayName = user.displayName;
+        saveTask(`${displayName}`, textoPostear.value)
+          .then(() => {
+            drawPost();
+          });
+      }
+    });
+  });
+
   buttonLogout.addEventListener('click', async () => {
     await signOut(auth);
     navigateTo('/');
     console.log('user sigout');
-  });
-
-  botonPost.addEventListener('click', (e) => {
-    e.preventDefault();
-    const textoPostear = document.querySelector('textarea');
-    saveTask(`${displayName}`, textoPostear.value)
-      .then(() => {
-        drawPost();
-      });
   });
 
   section.append(navFeed, title, textPost, botonPost);

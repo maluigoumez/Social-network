@@ -45,7 +45,7 @@ function home(navigateTo) {
     navigateTo('/login');
   });
   buttonSignup.addEventListener('click', () => {
-    navigateTo('/check');
+    navigateTo('/register');
   });
 
   // Append all elements to the section
