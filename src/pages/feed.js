@@ -1,9 +1,9 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-  getDocs, collection, orderBy, onSnapshot,
-} from 'firebase/firestore';
-import { db, auth, saveTask } from '../lib/firebase';
+  auth, saveTask, deleteTask, getTasks, onGetTask, getTask,
+} from '../lib/firebase';
 import { setupPost } from './post';
+import { showMessage } from './showMessage';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -32,10 +32,36 @@ function feed(navigateTo) {
   section.classList = 'seccionFeed';
   buttonLogout.className = 'botonLogout';
 
+  function deletePost(array) {
+    array.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        deleteTask(event.target.dataset.id);
+      });
+    });
+  }
+  function editPost(array) {
+    array.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const doc = await getTask(e.target.dataset.id);
+        const task = doc.data();
+        textPost.value = task.description;
+      });
+    });
+  }
   async function drawPost() {
-    const querySnapshot = await getDocs(collection(db, 'post'));
+    const querySnapshot = await getTasks();
+    // onsnapshot
     const htmlPost = setupPost(querySnapshot.docs);
     sectionPost.innerHTML = htmlPost;
+    const btnDelete = section.querySelectorAll('.btn-delete');
+    const btnEdit = section.querySelectorAll('.btn-edit');
+    /* btnDelete.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      console.log(event.target.dataset.id);
+    });
+  }); */
+    deletePost(btnDelete);
+    editPost(btnEdit);
   }
 
   onAuthStateChanged(auth, async (user) => {
