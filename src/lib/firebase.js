@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, Timestamp, deleteDoc, doc, onSnapshot, getDocs, getDoc
+  getFirestore, collection, addDoc, Timestamp, deleteDoc, doc, getDocs, getDoc, updateDoc, query, orderBy
 } from 'firebase/firestore';
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,8 +28,11 @@ export const saveTask = (title, content) => addDoc(collection(db, 'post'), { tit
 
 export const getTasks = () => getDocs(collection(db, 'post'));
 
-export const onGetTask = (callback) => onSnapshot(collection(db, 'post'), callback);
+export const onGetTask = () => query(collection(db, 'post'), orderBy('date', 'desc'));
+// ELIMINAR POST //
 
 export const deleteTask = (id) => deleteDoc(doc(db, 'post', id));
 
+// EDITAR POST//
 export const getTask = (id) => getDoc(doc(db, 'post', id));
+export const updateTask = (id, newFields) => updateDoc(doc(db, 'post', id), newFields);

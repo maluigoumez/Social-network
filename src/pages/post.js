@@ -1,10 +1,10 @@
 // const postList = document.querySelector('.posts');
-import { onGetTask } from "../lib/firebase";
+
 export const setupPost = (data) => {
   if (data.length) {
     let html = '';
     data.forEach((doc) => {
-      const publicacion = doc.data();
+      const publicacion = doc;
       const divPost = `
       <div class= "cadaPost">
         <h5 class="tituloPost">${publicacion.title}</h5>

@@ -1,6 +1,7 @@
+import { onSnapshot } from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-  auth, saveTask, deleteTask, getTasks, onGetTask, getTask,
+  auth, saveTask, deleteTask, getTasks, onGetTask, getTask, updateTask,
 } from '../lib/firebase';
 import { setupPost } from './post';
 import { showMessage } from './showMessage';
@@ -32,9 +33,13 @@ function feed(navigateTo) {
   section.classList = 'seccionFeed';
   buttonLogout.className = 'botonLogout';
 
+  let editStatus = false;
+  let id = '';
+
   function deletePost(array) {
     array.forEach((btn) => {
       btn.addEventListener('click', (event) => {
+        console.log(event.target.dataset.id);
         deleteTask(event.target.dataset.id);
       });
     });
@@ -44,24 +49,33 @@ function feed(navigateTo) {
       btn.addEventListener('click', async (e) => {
         const doc = await getTask(e.target.dataset.id);
         const task = doc.data();
-        textPost.value = task.description;
+        textPost.value = task.content;
+        editStatus = true;
+        id = e.target.dataset.id;
       });
     });
   }
   async function drawPost() {
-    const querySnapshot = await getTasks();
-    // onsnapshot
-    const htmlPost = setupPost(querySnapshot.docs);
-    sectionPost.innerHTML = htmlPost;
-    const btnDelete = section.querySelectorAll('.btn-delete');
-    const btnEdit = section.querySelectorAll('.btn-edit');
-    /* btnDelete.forEach((btn) => {
-    btn.addEventListener('click', (event) => {
-      console.log(event.target.dataset.id);
+    onSnapshot(onGetTask(), (querySnapshot) => {
+      const posts = [];
+      querySnapshot.forEach((doc) => {
+        console.log();
+        posts.push({
+          id: doc.id,
+          title: doc.data().title,
+          content: doc.data().content,
+          date: doc.data().date,
+        });
+      });
+      // console.log(posts);
+      const htmlPost = setupPost(posts);
+      sectionPost.innerHTML = htmlPost;
+      //  console.log(sectionPost.querySelectorAll('.btn-delete'));
+      const btnDelete = section.querySelectorAll('.btn-delete');
+      const btnEdit = section.querySelectorAll('.btn-edit');
+      deletePost(btnDelete);
+      editPost(btnEdit);
     });
-  }); */
-    deletePost(btnDelete);
-    editPost(btnEdit);
   }
 
   onAuthStateChanged(auth, async (user) => {
@@ -72,13 +86,16 @@ function feed(navigateTo) {
 
   botonPost.addEventListener('click', () => {
     onAuthStateChanged(auth, async (user) => {
+      const textoPostear = document.querySelector('textarea');
+      const displayName = user.displayName;
       if (user) {
-        const textoPostear = document.querySelector('textarea');
-        const displayName = user.displayName;
         saveTask(`${displayName}`, textoPostear.value)
           .then(() => {
             drawPost();
           });
+      }
+      if (editStatus) {
+        console.log('updating');
       }
     });
   });
