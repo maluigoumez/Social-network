@@ -1,44 +1,50 @@
-import { onSnapshot } from 'firebase/firestore';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onSnapshot } from "firebase/firestore";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
-  auth, saveTask, deleteTask, getTasks, onGetTask, getTask, updateTask,
-} from '../lib/firebase';
-import { setupPost } from './post';
-import { showMessage } from './showMessage';
+  auth,
+  saveTask,
+  deleteTask,
+  getTasks,
+  onGetTask,
+  getTask,
+  updateTask,
+} from "../lib/firebase";
+import { setupPost } from "./post";
+import { showMessage } from "./showMessage";
 
 function feed(navigateTo) {
-  const section = document.createElement('section');
-  const title = document.createElement('h3');
-  const buttonLogout = document.createElement('button');
-  const img = document.createElement('img');
-  const appName = document.createElement('h1');
-  const textPost = document.createElement('textarea');
-  const navFeed = document.getElementById('navFeed');
-  const botonPost = document.createElement('button');
-  const sectionPost = document.createElement('section');
-  sectionPost.classList.add('posts');
+  const section = document.createElement("section");
+  const title = document.createElement("h3");
+  const buttonLogout = document.createElement("button");
+  const img = document.createElement("img");
+  const appName = document.createElement("h1");
+  const textPost = document.createElement("textarea");
+  const navFeed = document.getElementById("navFeed");
+  const botonPost = document.createElement("button");
+  const sectionPost = document.createElement("section");
+  sectionPost.classList.add("posts");
 
-  appName.textContent = '{HOPPER}';
+  appName.textContent = "{HOPPER}";
   title.textContent = '"You only fail when you stop trying"';
-  img.src = 'router/cubo.jpg';
-  img.alt = 'logo';
-  textPost.placeholder = 'what are you thinking?';
-  buttonLogout.textContent = 'Logout';
-  textPost.className = 'textoPost';
-  botonPost.textContent = 'Post';
-  botonPost.className = 'botonPost';
+  img.src = "router/cubo.jpg";
+  img.alt = "logo";
+  textPost.placeholder = "what are you thinking?";
+  buttonLogout.textContent = "Logout";
+  textPost.className = "textoPost";
+  botonPost.textContent = "Post";
+  botonPost.className = "botonPost";
 
-  img.className = 'logoFeed';
-  navFeed.className = 'navegador';
-  section.classList = 'seccionFeed';
-  buttonLogout.className = 'botonLogout';
+  img.className = "logoFeed";
+  navFeed.className = "navegador";
+  section.classList = "seccionFeed";
+  buttonLogout.className = "botonLogout";
 
   let editStatus = false;
-  let id = '';
+  let id = "";
 
   function deletePost(array) {
     array.forEach((btn) => {
-      btn.addEventListener('click', (event) => {
+      btn.addEventListener("click", (event) => {
         console.log(event.target.dataset.id);
         deleteTask(event.target.dataset.id);
       });
@@ -46,12 +52,17 @@ function feed(navigateTo) {
   }
   function editPost(array) {
     array.forEach((btn) => {
-      btn.addEventListener('click', async (e) => {
+      btn.addEventListener("click", async (e) => {
+        console.log("Edit button clicked");
+        console.log("Post ID:", e.target.dataset.id);
+
         const doc = await getTask(e.target.dataset.id);
         const task = doc.data();
         textPost.value = task.content;
         editStatus = true;
         id = e.target.dataset.id;
+        // updates button text
+        botonPost.textContent = "Send edit";
       });
     });
   }
@@ -59,7 +70,6 @@ function feed(navigateTo) {
     onSnapshot(onGetTask(), (querySnapshot) => {
       const posts = [];
       querySnapshot.forEach((doc) => {
-        console.log();
         posts.push({
           id: doc.id,
           title: doc.data().title,
@@ -71,8 +81,11 @@ function feed(navigateTo) {
       const htmlPost = setupPost(posts);
       sectionPost.innerHTML = htmlPost;
       //  console.log(sectionPost.querySelectorAll('.btn-delete'));
-      const btnDelete = section.querySelectorAll('.btn-delete');
-      const btnEdit = section.querySelectorAll('.btn-edit');
+      const btnDelete = section.querySelectorAll(".btn-delete");
+      const btnEdit = section.querySelectorAll(".btn-edit");
+
+      console.log("Number of Edit buttons:", btnEdit.length);
+
       deletePost(btnDelete);
       editPost(btnEdit);
     });
@@ -83,27 +96,60 @@ function feed(navigateTo) {
       drawPost();
     }
   });
-
-  botonPost.addEventListener('click', () => {
+  //------------------------
+  botonPost.addEventListener("click", () => {
     onAuthStateChanged(auth, async (user) => {
-      const textoPostear = document.querySelector('textarea');
+      const textoPostear = document.querySelector("textarea");
       const displayName = user.displayName;
       if (user) {
-        saveTask(`${displayName}`, textoPostear.value)
-          .then(() => {
-            drawPost();
-          });
-      }
-      if (editStatus) {
-        console.log('updating');
+        // If in edit mode, update the post content instead of creating a new one
+        if (editStatus) {
+          if (id) {
+            // Retrieve the edited content from the textarea
+            const editedContent = textoPostear.value;
+
+            if (editedContent.trim() !== "") {
+              // Call updateTask with an object containing the new content
+              updateTask(id, { content: editedContent })
+                .then(() => {
+                  // Reset the editStatus and button text
+                  editStatus = false;
+                  id = "";
+                  botonPost.textContent = "Post";
+                  // Clear the textarea
+                  textoPostear.value = "";
+                  // Redraw the posts with the updated content
+                  drawPost();
+                })
+                .catch((error) => {
+                  console.error("Error updating post:", error);
+                });
+            } else {
+              console.error("Edited content is empty.");
+            }
+          }
+        } else {
+          // If not in edit mode, create a new post
+          saveTask(displayName, textoPostear.value)
+            .then(() => {
+              // Clear the textarea
+              textoPostear.value = "";
+              // Redraw the posts with the new post
+              drawPost();
+            })
+            .catch((error) => {
+              console.error("Error creating post:", error);
+            });
+        }
       }
     });
   });
 
-  buttonLogout.addEventListener('click', async () => {
+  //-------------------------
+  buttonLogout.addEventListener("click", async () => {
     await signOut(auth);
-    navigateTo('/');
-    console.log('user sigout');
+    navigateTo("/");
+    console.log("user signout");
   });
 
   section.append(navFeed, title, textPost, botonPost);
