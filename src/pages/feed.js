@@ -136,19 +136,6 @@ function feed(navigateTo) {
               showMessage('Error creating post'`${error}`, 'success');
             });
         }
-        saveTask(`${displayName}`, textoPostear.value)
-          .then(() => {
-            drawPost();
-          });
-      }
-      if (!editStatus) {
-        saveTask(`${displayName}`, textoPostear.value);
-      } else {
-        updateTask(id, {
-          title: displayName,
-          content: textoPostear.value,
-        });
-        editStatus = false;
       }
     });
   });
