@@ -1,10 +1,9 @@
 import { onSnapshot } from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-  auth, saveTask, deleteTask, getTasks, onGetTask, getTask, updateTask,
+  auth, saveTask, deleteTask, onGetTask, getTask, updateTask,
 } from '../lib/firebase';
 import { setupPost } from './post';
-import { showMessage } from './showMessage';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -39,7 +38,7 @@ function feed(navigateTo) {
   function deletePost(array) {
     array.forEach((btn) => {
       btn.addEventListener('click', (event) => {
-        console.log(event.target.dataset.id);
+        // console.log(event.target.dataset.id);
         deleteTask(event.target.dataset.id);
       });
     });
@@ -59,7 +58,6 @@ function feed(navigateTo) {
     onSnapshot(onGetTask(), (querySnapshot) => {
       const posts = [];
       querySnapshot.forEach((doc) => {
-        console.log();
         posts.push({
           id: doc.id,
           title: doc.data().title,
@@ -94,8 +92,14 @@ function feed(navigateTo) {
             drawPost();
           });
       }
-      if (editStatus) {
-        console.log('updating');
+      if (!editStatus) {
+        saveTask(`${displayName}`, textoPostear.value);
+      } else {
+        updateTask(id, {
+          title: displayName,
+          content: textoPostear.value,
+        });
+        editStatus = false;
       }
     });
   });
@@ -103,7 +107,7 @@ function feed(navigateTo) {
   buttonLogout.addEventListener('click', async () => {
     await signOut(auth);
     navigateTo('/');
-    console.log('user sigout');
+    // console.log('user sigout');
   });
 
   section.append(navFeed, title, textPost, botonPost);

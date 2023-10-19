@@ -36,9 +36,8 @@ function Login(navigateTo) {
 
   buttonLogin.addEventListener('click', () => {
     login(inputEmail.value, password.value)
-      .then((res) => {
+      .then(() => {
         navigateTo('/feed');
-        console.log(res);
         showMessage('Welcome', 'success');
       })
       .catch(() => {

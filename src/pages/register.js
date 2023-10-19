@@ -46,14 +46,14 @@ function Register(navigateTo) {
   form.append(inputUserName, inputEmail, password, buttonSign);
   buttonSign.type = 'button';
 
-  buttonReturn.textContent = "Return to home";
-  buttonReturn.className = "opposite";
+  buttonReturn.textContent = 'Return to home';
+  buttonReturn.className = 'opposite';
 
   function emailVal(stringEmail) {
     const expReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailCorrect = expReg.test(stringEmail);
     if (emailCorrect === false) {
-      console.log(emailCorrect);
+      // console.log(emailCorrect);
       showMessage('Check your email', false);
     }
   }
@@ -65,16 +65,16 @@ function Register(navigateTo) {
     } else {
       signup(inputEmail.value, password.value)
 
-        .then((res) => {
+        .then(() => {
           updateUserProfile(inputUserName.value)
             .then(() => {
               navigateTo('/feed');
               showMessage(`Welcome ${inputUserName.value}`, 'success');
             });
-          console.log(res);
+          // console.log(res);
         })
-        .catch((err) => {
-          console.log({ err });
+        .catch(() => {
+          // alert(err);
         });
     }
   });

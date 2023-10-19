@@ -1,8 +1,15 @@
 // importamos la funcion que vamos a testear
-import { myFunction } from '../src/lib/index';
+import deleteTask from '../src/pages/feed';
+import { setupPost } from '../src/pages/post';
 
-describe('myFunction', () => {
+describe('DelatePostFunction', () => {
   it('debería ser una función', () => {
-    expect(typeof myFunction).toBe('function');
+    expect(typeof deleteTask).toBe('function');
+  });
+});
+
+describe('Agregar un post', () => {
+  it('debería ser una función', () => {
+    expect(typeof setupPost).toBe('function');
   });
 });

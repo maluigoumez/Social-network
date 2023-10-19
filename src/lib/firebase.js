@@ -2,7 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, Timestamp, deleteDoc, doc, getDocs, getDoc, updateDoc, query, orderBy
+  getFirestore, collection, addDoc, Timestamp, deleteDoc,
+  doc, getDocs, getDoc, updateDoc, query, orderBy,
 } from 'firebase/firestore';
 
 // https://firebase.google.com/docs/web/setup#available-libraries

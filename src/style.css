@@ -16,14 +16,13 @@ h1 {
 button {
   background-color: black;
   color: white;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: medium;
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 20px;
   font-family: "Courier New", Courier, monospace;
 }
 button:hover {
@@ -35,14 +34,13 @@ button:hover {
 button.original {
   background-color: black;
   color: white;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: medium;
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 20px;
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -55,14 +53,13 @@ button.original:hover {
 button.opposite {
   background-color: darkgrey;
   color: black;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: medium;
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 20px;
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -74,9 +71,8 @@ button.opposite:hover {
 
 button.google {
   width: flex;
-  height: 40dp;
+  height: 40px;
   border-radius: 10px;
-  border: none;
   font-size: 16px;
   margin-top: 15px;
   position: relative;
@@ -86,7 +82,7 @@ button.google {
 }
 
 button.google img {
-  padding: 8dp;
+  padding: 8px;
   width: 200px;
   height: 40px;
 }
@@ -127,9 +123,6 @@ section {
   flex-direction: column;
 }
 
-img {
-  width: 200px;
-}
 .seccionInicio{
     display: flex;
     flex-direction: column;
