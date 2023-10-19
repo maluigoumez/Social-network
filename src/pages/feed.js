@@ -45,7 +45,7 @@ function feed(navigateTo) {
   function deletePost(array) {
     array.forEach((btn) => {
       btn.addEventListener("click", (event) => {
-        console.log(event.target.dataset.id);
+        //        console.log(event.target.dataset.id);
         deleteTask(event.target.dataset.id);
       });
     });
@@ -53,8 +53,8 @@ function feed(navigateTo) {
   function editPost(array) {
     array.forEach((btn) => {
       btn.addEventListener("click", async (e) => {
-        console.log("Edit button clicked");
-        console.log("Post ID:", e.target.dataset.id);
+        // console.log("Edit button clicked");
+        // console.log("Post ID:", e.target.dataset.id);
 
         const doc = await getTask(e.target.dataset.id);
         const task = doc.data();
@@ -84,7 +84,7 @@ function feed(navigateTo) {
       const btnDelete = section.querySelectorAll(".btn-delete");
       const btnEdit = section.querySelectorAll(".btn-edit");
 
-      console.log("Number of Edit buttons:", btnEdit.length);
+      // console.log("Number of Edit buttons:", btnEdit.length);
 
       deletePost(btnDelete);
       editPost(btnEdit);
@@ -107,7 +107,7 @@ function feed(navigateTo) {
           if (id) {
             // Retrieve the edited content from the textarea
             const editedContent = textoPostear.value;
-
+            //validates that the edited content is not just an empty string
             if (editedContent.trim() !== "") {
               // Call updateTask with an object containing the new content
               updateTask(id, { content: editedContent })
@@ -122,10 +122,10 @@ function feed(navigateTo) {
                   drawPost();
                 })
                 .catch((error) => {
-                  console.error("Error updating post:", error);
+                  showMessage("Error updating post:", error);
                 });
             } else {
-              console.error("Edited content is empty.");
+              showMessage("Edited content is empty.");
             }
           }
         } else {
@@ -138,7 +138,8 @@ function feed(navigateTo) {
               drawPost();
             })
             .catch((error) => {
-              console.error("Error creating post:", error);
+              // alert("Error creating post:");
+              showMessage("Error creating post"`${error}`, "success");
             });
         }
       }
@@ -149,7 +150,7 @@ function feed(navigateTo) {
   buttonLogout.addEventListener("click", async () => {
     await signOut(auth);
     navigateTo("/");
-    console.log("user signout");
+    // console.log("user signout");
   });
 
   section.append(navFeed, title, textPost, botonPost);
