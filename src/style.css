@@ -73,9 +73,11 @@ button.opposite:hover {
 }
 
 button.google {
-  width: flex;
-  height: 40dp;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  height: 35px;
   border: none;
   font-size: 16px;
   margin-top: 15px;
@@ -83,12 +85,9 @@ button.google {
   font-weight: bold;
   cursor: pointer;
   background: #d6dbdf;
-}
-
-button.google img {
-  padding: 8dp;
-  width: 200px;
-  height: 40px;
+  background-image: url("https://developers.google.com/static/identity/images/btn_google_signin_light_normal_web.png?hl=es-419");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 button.google:hover {
@@ -130,75 +129,70 @@ section {
 img {
   width: 200px;
 }
-.seccionInicio{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.seccionInicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.seccionFeed{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
+.seccionFeed {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
-.logoFeed{
-    width: 60px;
+.logoFeed {
+  width: 60px;
 }
 
-.logoInicio{
-    width: 200px;
+.logoInicio {
+  width: 200px;
 }
-
 
 /* FEED */
-.navegador{
-   display: flex;
-   align-items: center;
-   justify-content: end;
-   height: 15%;
+.navegador {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 15%;
 }
 
-.botonLogout{
-   padding: 5px;
-   margin: 0px;
-   font-size: small;
-
+.botonLogout {
+  padding: 5px;
+  margin: 0px;
+  font-size: small;
 }
 
-.textoPost{
-    width: 100%;
-    height: 80px;
+.textoPost {
+  width: 100%;
+  height: 80px;
 }
 
-.botonPost{
-   padding: 5px;
-   margin: 5px;
-   font-size: medium;
-   background-color: black;
+.botonPost {
+  padding: 5px;
+  margin: 5px;
+  font-size: medium;
+  background-color: black;
 }
-.columnaPost{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.parrafoPost{
-    font-size: small;
-    margin-top: 0px;
-}
-.tituloPost{
-     font-size: medium;
-     margin-top: 0px;
-     margin-bottom: 5px;
-}
-.cadaPost{
-    border: solid black;
-    padding: 10px;
-    margin-top: 20px;
-    box-shadow: -12px 8px darkgrey;
-    
-
+.columnaPost {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
+.parrafoPost {
+  font-size: small;
+  margin-top: 0px;
+}
+.tituloPost {
+  font-size: medium;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.cadaPost {
+  border: solid black;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: -12px 8px darkgrey;
+}
