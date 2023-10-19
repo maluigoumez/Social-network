@@ -37,6 +37,9 @@ function feed(navigateTo) {
   let id = '';
 
   function deletePost(array) {
+    botonPost.addEventListener('click', () => {
+      alert('Seguro que quieres eliminar?');
+    });
     array.forEach((btn) => {
       btn.addEventListener('click', (event) => {
         // console.log(event.target.dataset.id);
@@ -57,6 +60,9 @@ function feed(navigateTo) {
         id = e.target.dataset.id;
         // updates button text
         botonPost.textContent = 'Send edit';
+        botonPost.addEventListener('click', () => {
+          alert('Seguro que quieres eliminar?');
+        });
       });
     });
   }

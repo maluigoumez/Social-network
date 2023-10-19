@@ -5,6 +5,7 @@
   justify-items: center;
 }
 
+
 h2 {
   font-family: "Courier New", Courier, monospace;
 }
@@ -190,4 +191,5 @@ section {
   padding: 10px;
   margin-top: 20px;
   box-shadow: -12px 8px darkgrey;
+  background-color: white;
 }

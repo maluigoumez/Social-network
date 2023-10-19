@@ -13,3 +13,9 @@ describe('Agregar un post', () => {
     expect(typeof setupPost).toBe('function');
   });
 });
+
+describe('Postear', () => {
+  it('debería ser una función', () => {
+    expect(typeof setupPost).toBe('function');
+  });
+});
