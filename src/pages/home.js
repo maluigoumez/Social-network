@@ -18,10 +18,11 @@ function home(navigateTo) {
   title.textContent = "Welcome to";
   img.src = "router/cubo.jpg";
   img.alt = "logo";
+  img.className = "logoInicio";
 
   textWelcome.textContent =
     "A space created especially for programming lovers. Join and immerse yourself in the world of coding!";
-  buttonLogin.innerHTML = "Sign In";
+  buttonLogin.innerHTML = "Login";
   buttonLogin.className = "original";
   buttonSignup.innerHTML = "Sign Up";
   buttonSignup.className = "opposite";

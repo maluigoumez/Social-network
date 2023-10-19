@@ -70,22 +70,23 @@ button.opposite:hover {
 }
 
 button.google {
-  width: flex;
-  height: 40px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  height: 35px;
+  border: none;
   font-size: 16px;
   margin-top: 15px;
   position: relative;
   font-weight: bold;
   cursor: pointer;
   background: #d6dbdf;
+  background-image: url("https://developers.google.com/static/identity/images/btn_google_signin_light_normal_web.png?hl=es-419");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-button.google img {
-  padding: 8px;
-  width: 200px;
-  height: 40px;
-}
 
 button.google:hover {
   background: #38468c;

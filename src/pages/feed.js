@@ -95,7 +95,7 @@ function feed(navigateTo) {
     onAuthStateChanged(auth, async (user) => {
       const textoPostear = document.querySelector('textarea');
       const displayName = user.displayName;
-      if (user) {
+      if (user && textPost.value !== '') {
         // If in edit mode, update the post content instead of creating a new one
         if (editStatus) {
           if (id) {
