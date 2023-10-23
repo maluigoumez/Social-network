@@ -1,4 +1,5 @@
 // const postList = document.querySelector('.posts');
+import { auth } from '../lib/firebase';
 
 export const setupPost = (data) => {
   if (data.length) {
@@ -9,8 +10,9 @@ export const setupPost = (data) => {
       <div class= "cadaPost">
         <h5 class="tituloPost">${publicacion.title}</h5>
         <p class="parrafoPost">${publicacion.content}</p>
-        <button class="btn-delete" data-id="${doc.id}">Delete</button>
-        <button class="btn-edit" data-id="${doc.id}">Edit</button>
+        ${auth.currentUser.email === doc.email
+    ? ` <button class="btn-delete" data-id="${doc.id}">Delete</button>
+          <button class="btn-edit" data-id="${doc.id}">Edit</button> ` : ' '}
       </div>
         `;
       html += divPost;

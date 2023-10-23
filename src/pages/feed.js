@@ -13,7 +13,7 @@ function feed(navigateTo) {
   const img = document.createElement('img');
   const appName = document.createElement('h1');
   const textPost = document.createElement('textarea');
-  const navFeed = document.getElementById('navFeed');
+  const navFeed = document.createElement('nav');
   const botonPost = document.createElement('button');
   const sectionPost = document.createElement('section');
   sectionPost.classList.add('posts');
@@ -37,9 +37,6 @@ function feed(navigateTo) {
   let id = '';
 
   function deletePost(array) {
-    botonPost.addEventListener('click', () => {
-      alert('Seguro que quieres eliminar?');
-    });
     array.forEach((btn) => {
       btn.addEventListener('click', (event) => {
         // console.log(event.target.dataset.id);
@@ -60,9 +57,6 @@ function feed(navigateTo) {
         id = e.target.dataset.id;
         // updates button text
         botonPost.textContent = 'Send edit';
-        botonPost.addEventListener('click', () => {
-          alert('Seguro que quieres eliminar?');
-        });
       });
     });
   }
@@ -75,6 +69,7 @@ function feed(navigateTo) {
           title: doc.data().title,
           content: doc.data().content,
           date: doc.data().date,
+          email: doc.data().email,
         });
       });
       // console.log(posts);
