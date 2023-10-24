@@ -38,7 +38,8 @@ Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de acces
 y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
 Por lo tanto, en este proyecto construirás una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
+[Single-page Application (SPA)](![image](https://github.com/ariardgz/Social-network/assets/104811574/dab188c2-3fb6-4ed7-9280-0f451575de5b)
+)
 [_responsive_](https://curriculum.laboratoria.la/es/topics/css/02-responsive) (con más de una vista / página)
 en la que podamos **leer y escribir datos**.
 
