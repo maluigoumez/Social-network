@@ -25,7 +25,9 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const auth = getAuth(app);
 
-export const saveTask = (title, content) => addDoc(collection(db, 'post'), { title, content, date: Timestamp.now(), email: auth.currentUser.email });
+export const saveTask = (title, content) => addDoc(collection(db, 'post'), {
+  title, content, date: Timestamp.now(), email: auth.currentUser.email,
+});
 
 export const getTasks = () => getDocs(collection(db, 'post'));
 
