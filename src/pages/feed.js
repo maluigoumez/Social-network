@@ -44,6 +44,10 @@ function feed(navigateTo) {
       });
     });
   }
+  /**
+   * Funcion para editar post
+   * @param {} editPost
+   */
   function editPost(array) {
     array.forEach((btn) => {
       btn.addEventListener('click', async (e) => {

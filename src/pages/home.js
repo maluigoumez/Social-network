@@ -25,6 +25,7 @@ function home(navigateTo) {
   buttonLogin.className = 'original';
   buttonSignup.innerHTML = 'Sign Up';
   buttonSignup.className = 'opposite';
+  section.className = 'seccionInicio';
 
   // Set image source and alt text for the Google Sign-In button
   imageGoogle.src = 'img/btn_google_signin_light_normal_web.png';

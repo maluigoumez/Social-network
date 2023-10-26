@@ -3,7 +3,9 @@
   align-items: center;
   flex-direction: column;
   justify-items: center;
+  
 }
+
 
 
 h2 {
@@ -118,13 +120,6 @@ input {
   box-shadow: -12px 8px darkgrey;
   margin-bottom: 10px;
 }
-
-section {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .seccionInicio{
     display: flex;
     flex-direction: column;
@@ -136,7 +131,13 @@ section {
   display: flex;
   flex-direction: column;
   align-items: end;
+  
+ 
 }
+.posts{
+  margin-right: 5px;
+}
+
 
 .logoFeed {
   width: 60px;
@@ -192,4 +193,5 @@ section {
   margin-top: 20px;
   box-shadow: -12px 8px darkgrey;
   background-color: white;
+  
 }
