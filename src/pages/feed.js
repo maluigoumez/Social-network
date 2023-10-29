@@ -16,8 +16,35 @@ function feed(navigateTo) {
   const navFeed = document.createElement('nav');
   const botonPost = document.createElement('button');
   const sectionPost = document.createElement('section');
-  sectionPost.classList.add('posts');
+  /*
+  /// /// Modal
+  const ventanaModal = document.createElement('div');
+  const contenidoModal = document.createElement('div');
+  const span = document.createElement('span');
+  const botonModal = document.createElement('button');
+  const textoModal = document.createElement('p');
 
+  span.className = 'cerrar';
+  ventanaModal.className = 'modal';
+  contenidoModal.className = 'contenido-modal';
+  botonModal.className = 'abrirModal';
+  textoModal.textContent = 'Seguro quieres eliminar tu post?';
+
+  // Si el usuario hace click en la cancelar, la ventana se cierra
+  ventanaModal.appendChild(contenidoModal, textoModal, span);
+  span.addEventListener('click', () => {
+    ventanaModal.style.display = 'none';
+  });
+
+  // Si el usuario hace click fuera de la ventana, se cierra.
+  window.addEventListener('click', (event) => {
+    if (event.target == ventanaModal) {
+      ventanaModal.style.display = 'none';
+    }
+  });
+  */
+  /// /// /// //-------------------------------------------------------
+  sectionPost.classList.add('posts');
   appName.textContent = '{HOPPER}';
   title.textContent = '"You only fail when you stop trying"';
   img.src = 'router/cubo.jpg';
@@ -44,10 +71,7 @@ function feed(navigateTo) {
       });
     });
   }
-  /**
-   * Funcion para editar post
-   * @param {} editPost
-   */
+
   function editPost(array) {
     array.forEach((btn) => {
       btn.addEventListener('click', async (e) => {
